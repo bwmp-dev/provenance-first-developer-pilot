@@ -4,11 +4,11 @@ project:
   name: ProvenanceFirstDeveloperPilot
 artifact:
   id: first-developer-pilot
-  version: 0.1.0
+  version: 0.1.1
   path: build/first-developer-pilot.jar
 paper:
   recommendations:
-    enabled: true
+    enabled: false
     apiFloor: 1.20.6
     newVersions: informational
   matrix:
