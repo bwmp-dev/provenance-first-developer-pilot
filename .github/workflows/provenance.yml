@@ -1,0 +1,41 @@
+name: Provenance submission
+on:
+  workflow_dispatch:
+  push:
+    tags: ["v0.1.0"]
+permissions:
+  contents: read
+  id-token: write
+  statuses: write
+jobs:
+  submit:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@b6effb05e454b25005698d916606bdc6ffcbf961
+        with:
+          distribution: temurin
+          java-version: "21"
+      - name: Build plugin
+        run: |
+          python3 scripts/build.py
+      - name: Submit exact artifact for testing
+        uses: bwmp-dev/provenance/packages/action@72d1e6dc0655f6af3622b9343e6cf593e0d05852
+        with:
+          artifact: build/first-developer-pilot.jar
+          configuration: provenance.yml
+          version: 0.1.0
+          project: ${{ vars.PROVENANCE_PROJECT_ID }}
+          platform-origin: ${{ vars.PROVENANCE_ORIGIN }}
+          audience: ${{ vars.PROVENANCE_AUDIENCE }}
+          repository: ${{ github.repository }}
+          source-commit: ${{ github.sha }}
+          source-ref: ${{ github.ref }}
+          max-artifact-bytes: "104857600"
+          wait: "true"
+          timeout-ms: "600000"
+          report: status
+          github-token: ${{ github.token }}
