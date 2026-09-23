@@ -4,7 +4,7 @@ project:
   name: ProvenanceFirstDeveloperPilot
 artifact:
   id: first-developer-pilot
-  version: 0.1.1
+  version: 0.1.2
   path: build/first-developer-pilot.jar
 paper:
   recommendations:
