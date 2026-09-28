@@ -2,7 +2,7 @@ name: Provenance submission
 on:
   workflow_dispatch:
   push:
-    tags: ["v0.1.1"]
+    tags: ["v0.1.3"]
 permissions:
   contents: read
   id-token: write
@@ -27,7 +27,7 @@ jobs:
         with:
           artifact: build/first-developer-pilot.jar
           configuration: provenance.yml
-          version: 0.1.1
+          version: 0.1.3
           project: ${{ vars.PROVENANCE_PROJECT_ID }}
           platform-origin: ${{ vars.PROVENANCE_ORIGIN }}
           audience: ${{ vars.PROVENANCE_AUDIENCE }}

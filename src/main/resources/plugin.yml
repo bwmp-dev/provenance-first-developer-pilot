@@ -2,3 +2,10 @@ name: ProvenanceFirstDeveloperPilot
 version: 1.0.0
 main: dev.provenance.firstdev.FirstDeveloperPilotPlugin
 api-version: "1.20"
+commands:
+  firstdevpilot:
+    description: Emit the first-developer public-proof marker.
+    permission: provenance.firstdevpilot
+permissions:
+  provenance.firstdevpilot:
+    default: op
